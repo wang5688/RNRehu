@@ -8,7 +8,6 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from 'react-native';
-console.log(TouchableHighlight)
 
 /**
  * 菜单列表

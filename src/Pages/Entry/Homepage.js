@@ -57,7 +57,7 @@ class HomePage extends Component {
         </TabItem>
         <TabItem
           selected={selected === TAB.tab_boutique}
-          title="精品"
+          title="精选"
           titleStyle={styles.titleStyle}
           selectedTitleStyle={styles.titleStyle}
           tabStyle={styles.tabStyle}

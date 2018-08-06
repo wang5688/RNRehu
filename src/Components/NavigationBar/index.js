@@ -9,6 +9,7 @@ import {
   StyleSheet,
   StatusBar,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -25,7 +26,7 @@ class NavigationBar extends Component {
       visible: PropTypes.bool,
       backgroundColor: PropTypes.string, // 背景色
     }),
-    leftButton: PropTypes.element, // 左侧按钮
+    // leftButton: PropTypes.element, // 左侧按钮
     rightButton: PropTypes.element, // 右侧按钮
   }
 
@@ -41,7 +42,8 @@ class NavigationBar extends Component {
   }
 
   render() {
-    console.log(this.props)
+    const { leftButton } = this.props;
+
     return (
       <View style={[styles.container, this.props.style]}>
         {
@@ -54,11 +56,19 @@ class NavigationBar extends Component {
         {
           this.props.visible ? (
             <View style={styles.navBar}>
-              <View style={styles.navButton}>{this.props.leftButton}</View>
+              {
+                leftButton && (typeof leftButton === 'boolean' ? (
+                  <TouchableOpacity style={[styles.leftButton, { width: 10, height: 17 }]} onPress={() => { this.props.navigator.pop(); }}>
+                    <Image style={[{ width: 10, height: 17 }]} source={require('../../assets/images/arrow_left.png')} />
+                  </TouchableOpacity>
+                ) : (
+                  <View style={styles.rightButton}>{this.props.rightButton}</View>
+                ))
+              }
               <View style={[styles.navBarTitle, this.props.titleLayoutStyle]}>
                 <Text ellipsizeMode="head" numberOfLines={1} style={styles.title}>{this.props.title}</Text>
               </View>
-              <View style={styles.navButton}>{this.props.rightButton}</View>
+              <View style={styles.rightButton}>{this.props.rightButton}</View>
             </View>
           ) : null
         }
@@ -75,15 +85,23 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     color: '#000',
+    alignSelf: 'center'
   },
   navBar: {
+    position: 'relative',
     height: 44,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
+    justifyContent: 'center',
   },
-  navButton: {},
+  rightButton: {
+    position: 'absolute',
+    right: 16,
+  },
+  leftButton: {
+    position: 'absolute',
+    left: 16,
+  },
   statusBar: {
     height: Platform.OS === 'ios' ? STATUS_BAR_HEIGHT : 0,
   }
