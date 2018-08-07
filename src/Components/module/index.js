@@ -10,6 +10,41 @@ import {
 } from 'react-native';
 
 /**
+ * 播放量、分享功能
+ * @type {Object}
+ */
+export class ShareItem extends Component {
+  static propTypes = {
+    data: PropTypes.object,
+  }
+
+  render() {
+    const { data } = this.props;
+
+    return (
+      <View style={styles.shareContent}>
+        <View style={[styles.bottomLeft, { flexDirection: 'row' }]}>
+          <View style={[styles.watches, styles.leftBtn]}>
+            <Image style={[styles.leftBtnIcon, { width: 15, height: 16 }]} source={require('../../assets/images/play.png')} />
+            <Text style={styles.word}>{data.watches}</Text>
+          </View>
+          <View style={[styles.likes, styles.leftBtn]}>
+            <Image style={styles.leftBtnIcon} source={require('../../assets/images/upvote_nor.png')} />
+            <Text style={styles.word}>{data.likes || data.ding}</Text>
+          </View>
+        </View>
+        <View style={[styles.bottomRight, { flexDirection: 'row' }]}>
+          <Image style={styles.bottomBtn} source={require('../../assets/images/icon_circle.png')} />
+          <Image style={styles.bottomBtn} source={require('../../assets/images/icon_wechat.png')} />
+          <Image style={styles.bottomBtn} source={require('../../assets/images/icon_weibo.png')} />
+          <Image style={[styles.bottomBtn, { width: 16, height: 16 }]} source={require('../../assets/images/icon_comments.png')} />
+        </View>
+      </View>
+    );
+  }
+}
+
+/**
  * 菜单列表
  * @type {Object}
  */
@@ -79,5 +114,29 @@ const styles = StyleSheet.create({
   leftButton: {
     width: 10,
     height: 17,
+  },
+  // 分享
+  shareContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
+  },
+  word: {
+    fontSize: 13,
+    color: '#888'
+  },
+  leftBtn: {
+    flexDirection: 'row',
+    marginRight: 12,
+  },
+  leftBtnIcon: {
+    width: 16,
+    height: 16,
+    marginRight: 4,
+  },
+  bottomBtn: {
+    width: 18,
+    height: 16,
+    marginHorizontal: 10,
   }
 });
