@@ -14,9 +14,11 @@ import CommentItem from './commentItem';
 export default class CommentList extends Component {
   static propTypes = {
     listData: PropTypes.array,
+    total: PropTypes.number,
   }
 
   static defaultProps = {
+    total: 134,
     listData: [{
     	"id": "73081",
     	"pdate": "2018-05-25 14:25:17",
@@ -140,7 +142,7 @@ export default class CommentList extends Component {
   }
 
   render() {
-    const { listData } = this.props;
+    const { listData, total } = this.props;
     const itemData = (data) => {
       let userInfo = null;
       if (data && data.user_info) {
@@ -158,14 +160,31 @@ export default class CommentList extends Component {
       <View style={styles.container}>
         {
           listData.map((item, index) =>
-            <CommentItem data={itemData(item)} key={index} />
+            index < 3 && <CommentItem data={itemData(item)} key={index} />
           )
         }
+        <View style={styles.total}>
+          <Text style={{ fontSize: 12, color: '#007AFF' }}>{`${total}条精彩评论`}</Text>
+          <Image style={styles.arrowRight} source={require('../../assets/images/arrow_down.png')} />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
 
+  },
+  total: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginVertical: 12,
+  },
+  arrowRight: {
+    transform: [{ rotate: '-90deg' }],
+    width: 12,
+    height: 7,
+  }
 });

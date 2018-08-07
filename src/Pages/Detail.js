@@ -7,12 +7,15 @@ import {
   Text,
   Image,
   ScrollView,
+  Dimensions,
   StyleSheet,
 } from 'react-native';
 import NavigationBar from '../Components/NavigationBar';
 import { ShareItem } from '../Components/module';
 import Comments from '../Components/Comment';
 import { GET } from '../Common/fetch';
+
+const DEVICE_WIDTH = Dimensions.get('window').width;
 
 export default class Detail extends Component {
   constructor(props) {
@@ -49,7 +52,7 @@ export default class Detail extends Component {
       <View style={styles.container}>
         <NavigationBar leftButton navigator={this.props.navigator} />
 
-        <View>
+        <View style={{ flex: 1 }}>
           <Image style={styles.player} source={{ uri: data.image }} />
 
           <ScrollView style={styles.article}>
@@ -96,11 +99,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   player: {
-    width: 375,
+    width: DEVICE_WIDTH,
     height: 194,
   },
   article: {
+    flex: 1,
+    height: 300,
     paddingTop: 8,
+    paddingBottom: 12,
   },
   info: {
     paddingHorizontal: 16,

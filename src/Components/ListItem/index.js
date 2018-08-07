@@ -4,10 +4,13 @@ import {
   Text,
   Image,
   StyleSheet,
+  Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { ShareItem } from '../module';
+
+const DEVICE_WIDTH = Dimensions.get('window').width;
 
 export default class ListItem extends Component {
   static propTypes = {
@@ -51,14 +54,14 @@ const styles = StyleSheet.create({
   },
   topCover: {
     position: 'relative',
-    width: 375,
+    width: DEVICE_WIDTH,
     height: 194,
     justifyContent: 'center',
     alignItems: 'center',
   },
   cover: {
     position: 'absolute',
-    width: 375,
+    width: DEVICE_WIDTH,
     height: 194,
   },
   playIcon: {

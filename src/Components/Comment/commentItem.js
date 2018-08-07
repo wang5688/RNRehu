@@ -17,7 +17,6 @@ export default class CommentItem extends Component {
 
   render() {
     const { data } = this.props;
-    console.log(data)
 
     return (
       <View style={styles.container}>
@@ -28,8 +27,8 @@ export default class CommentItem extends Component {
             <Text style={styles.pdate}>{data.pdate}</Text>
           </View>
           <View style={styles.likes}>
-            <Image style={styles.likeIcon} />
-            <Text>{data.likes}</Text>
+            <Image style={styles.likeIcon} source={require('../../assets/images/comment_like.png')} />
+            <Text style={{ fontSize: 13, color: '#8E8E93' }}>{data.likes}</Text>
           </View>
         </View>
 
@@ -42,6 +41,8 @@ export default class CommentItem extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderColor: '#E5E5EA',
   },
   itemTop: {
     flexDirection: 'row',
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     marginRight: 17,
+    borderRadius: 14,
   },
   userInfo: {
     fontSize: 12,
@@ -63,5 +65,16 @@ const styles = StyleSheet.create({
   message: {
     marginTop: 8,
     marginLeft: 45,
+  },
+  likes: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    right: 0,
+  },
+  likeIcon: {
+    width: 17,
+    height: 17,
+    marginRight: 4,
   }
 });
