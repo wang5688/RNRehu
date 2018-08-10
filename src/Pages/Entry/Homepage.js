@@ -12,6 +12,7 @@ import TabNavigator from 'react-native-tab-navigator';
 const TabItem = TabNavigator.Item;
 
 import Mine from '../Mine';
+import Boutique from '../Boutique';
 import Hot from '../Hot';
 
 const TAB = {
@@ -24,7 +25,7 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: TAB.tab_hot,
+      selected: TAB.tab_boutique,
     };
   }
 
@@ -65,9 +66,7 @@ class HomePage extends Component {
           renderSelectedIcon={() => <Image style={styles.icon} source={require('../../assets/images/tabs/boutique_sel.png')} />}
           onPress={() => { this._selectTab(TAB.tab_boutique); }}
         >
-          <View>
-            <Text>热门</Text>
-          </View>
+          <Boutique {...this.props} />
         </TabItem>
         <TabItem
           selected={selected === TAB.tab_mine}
